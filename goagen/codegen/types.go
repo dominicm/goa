@@ -931,7 +931,7 @@ func {{.Name}}(source {{gotyperef .Type 0}}, inErr error) (target {{gonative .Ty
 
 	unmArrayTmpl = `{{tabs .depth}}if val, ok := {{.source}}.([]interface{}); ok {
 {{tabs .depth}}	{{.target}} = make([]{{gotyperef .elemType.Type (add .depth 2)}}, len(val))
-{{tabs .depth}}	for i{{(add .depth 2)}}, v := range val {
+{{tabs .depth}}	for i{{.depth}}, v := range val {
 {{unmarshalAttribute .elemType (printf "%s[*]" .context) "v" (printf "%s[i%d]" .target .depth) (add .depth 2)}}{{$ctx := .}}
 {{tabs .depth}}	}
 {{tabs .depth}}} else {
