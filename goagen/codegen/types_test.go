@@ -315,11 +315,17 @@ var _ = Describe("code generation", func() {
 			})
 
 			BeforeEach(func() {
-				ar := &Array{
-					ElemType: &AttributeDefinition{
-						Type: Primitive(IntegerKind),
-					},
-				}
+				a1Def := AttributeDefinition{Type: String}
+				a1 := &Array{ElemType: &a1Def}
+
+				a2Def := AttributeDefinition{Type: a1}
+				ar := &Array{ElemType: &a2Def}
+
+				//				ar := &Array{
+				//					ElemType: &AttributeDefinition{
+				//						Type: Primitive(IntegerKind),
+				//					},
+				//				}
 				intAtt := &AttributeDefinition{Type: Primitive(IntegerKind)}
 				arAtt := &AttributeDefinition{Type: ar}
 				io := Object{"foo": intAtt, "bar": arAtt}
